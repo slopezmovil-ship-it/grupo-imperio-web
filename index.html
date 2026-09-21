@@ -204,144 +204,7 @@
     </div>
   </section>
 
-  <!-- =========================================================================
-       4. INTERACTIVE FREIGHT QUOTATION CALCULATOR (COTIZADOR INTELIGENTE)
-       ========================================================================= -->
-  <section id="cotizador" class="calc-section">
-    <div class="container">
-      <div style="text-align: center; margin-bottom: 3.5rem;" class="reveal">
-        <span class="section-eyebrow">Herramienta Comercial</span>
-        <h2 class="section-title">Cotizador Inteligente de Fletes</h2>
-        <p class="section-desc">
-          Planifique sus traslados de carga nacional e internacional al instante. Configure su ruta y obtenga el equipo óptimo con atención prioritaria de nuestro centro de despacho.
-        </p>
-      </div>
-
-      <div class="calc-card reveal delay-1">
-        <div class="calc-grid">
-          <!-- Inputs Column -->
-          <div>
-            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-              <svg width="20" height="20" fill="none" stroke="var(--color-brand-azure)" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-              </svg>
-              Parámetros del Envío
-            </h3>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="calc-origin" class="form-label">País / Puerto de Origen</label>
-                <select id="calc-origin" class="form-select">
-                  <option value="CR-CALDERA" selected>Costa Rica · Puerto Caldera (Pacífico)</option>
-                  <option value="CR-LIMON">Costa Rica · Puerto Limón / Moín (Caribe)</option>
-                  <option value="CR-GAM">Costa Rica · San José / GAM</option>
-                  <option value="PA-COLON">Panamá · Puerto Colón (Caribe)</option>
-                  <option value="PA-BALBOA">Panamá · Puerto Balboa (Pacífico)</option>
-                  <option value="PA-CHIRIQUI">Panamá · David / Chiriquí</option>
-                  <option value="GT-BARRIOS">Guatemala · Puerto Barrios / Sto. Tomás</option>
-                  <option value="GT-CD">Guatemala · Ciudad de Guatemala</option>
-                  <option value="CA-REST">Otros Puntos de Centroamérica</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="calc-dest" class="form-label">País / Puerto de Destino</label>
-                <select id="calc-dest" class="form-select">
-                  <option value="PA-CHIRIQUI" selected>Panamá · David / Chiriquí</option>
-                  <option value="PA-CIUDAD">Panamá · Ciudad de Panamá</option>
-                  <option value="CR-GAM">Costa Rica · San José / GAM</option>
-                  <option value="CR-CALDERA">Costa Rica · Puerto Caldera</option>
-                  <option value="CR-LIMON">Costa Rica · Puerto Limón</option>
-                  <option value="GT-CD">Guatemala · Ciudad de Guatemala</option>
-                  <option value="CA-SICA">Honduras / El Salvador / Nicaragua</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="calc-cargo" class="form-label">Tipo de Carga o Mercancía</label>
-                <select id="calc-cargo" class="form-select">
-                  <option value="granel" selected>Granel / Fertilizantes / Sacos / Granos</option>
-                  <option value="fcl">Contenedor Marítimo FCL (20' / 40')</option>
-                  <option value="seco">Mercancía General / Materiales de Construcción</option>
-                  <option value="refrigerado">Carga Refrigerada / Perecederos / Fruta</option>
-                  <option value="lowboy">Maquinaria Pesada / Carga Sobredimensionada</option>
-                  <option value="vagoneta">Pétreos / Agregados / Volteo</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                  <label for="calc-weight" class="form-label" style="margin-bottom: 0;">Peso Aproximado</label>
-                  <span id="calc-weight-val" style="font-weight: 700; color: var(--color-brand-azure);">25 Ton</span>
-                </div>
-                <input type="range" id="calc-weight" min="5" max="60" value="25" step="1" style="width: 100%; accent-color: var(--color-brand-azure);">
-              </div>
-            </div>
-
-            <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.5rem;">
-              * Todas las unidades operan bajo póliza de seguro y seguimiento satelital continuo en tiempo real.
-            </p>
-          </div>
-
-          <!-- Summary Column -->
-          <div>
-            <div class="calc-summary-box">
-              <div>
-                <h4 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1.25rem;">
-                  Resumen de Requerimiento
-                </h4>
-
-                <div class="calc-summary-item">
-                  <span class="calc-summary-label">Origen:</span>
-                  <span id="sum-origin" class="calc-summary-val">-</span>
-                </div>
-                <div class="calc-summary-item">
-                  <span class="calc-summary-label">Destino:</span>
-                  <span id="sum-dest" class="calc-summary-val">-</span>
-                </div>
-                <div class="calc-summary-item">
-                  <span class="calc-summary-label">Categoría:</span>
-                  <span id="sum-cargo" class="calc-summary-val">-</span>
-                </div>
-                <div class="calc-summary-item">
-                  <span class="calc-summary-label">Peso:</span>
-                  <span id="sum-weight" class="calc-summary-val">-</span>
-                </div>
-                <div class="calc-summary-item">
-                  <span class="calc-summary-label">Equipo Recomendado:</span>
-                  <span id="sum-unit" class="calc-summary-val" style="color: var(--color-brand-azure);">-</span>
-                </div>
-
-                <div class="calc-total-pill">
-                  <div class="calc-total-pill-title">Corredor Operativo Estimado</div>
-                  <div id="sum-estimate" class="calc-total-pill-val">Costa Rica ⇄ Panamá</div>
-                </div>
-              </div>
-
-              <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem;">
-                <a id="calc-btn-whatsapp" href="#" target="_blank" class="btn btn-primary" style="background: #25D366; border-color: #25D366; box-shadow: 0 4px 14px rgba(37,211,102,0.35);">
-                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.288.043.088.072.19.014.306-.058.115-.087.19-.174.289l-.26.3c-.087.088-.179.183-.077.359.101.174.453.746.969 1.206.666.592 1.229.775 1.403.863.173.087.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.42-.099.825zm-3.423-10.416c-4.408 0-7.994 3.586-7.995 7.996 0 1.439.387 2.822 1.096 4.043l-1.109 4.053 4.18-1.095c1.175.64 2.504.998 3.827.998 4.407 0 7.994-3.586 7.995-7.996.001-4.41-3.585-7.999-7.994-7.999z"/>
-                  </svg>
-                  <span>Enviar Cotización a WhatsApp</span>
-                </a>
-                <a id="calc-btn-email" href="#" class="btn btn-secondary">
-                  <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <span>Solicitar Vía Correo Electrónico</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================================
+    <!-- =========================================================================
        5. SERVICES & PORT OPERATIONS
        ========================================================================= -->
   <section id="servicios" class="services-section">
@@ -564,6 +427,144 @@
       </div>
     </div>
   </section>
+
+  <!-- =========================================================================
+       4. INTERACTIVE FREIGHT QUOTATION CALCULATOR (COTIZADOR INTELIGENTE)
+       ========================================================================= -->
+  <section id="cotizador" class="calc-section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 3.5rem;" class="reveal">
+        <span class="section-eyebrow">Herramienta Comercial</span>
+        <h2 class="section-title">Cotizador Inteligente de Fletes</h2>
+        <p class="section-desc">
+          Planifique sus traslados de carga nacional e internacional al instante. Configure su ruta y obtenga el equipo óptimo con atención prioritaria de nuestro centro de despacho.
+        </p>
+      </div>
+
+      <div class="calc-card reveal delay-1">
+        <div class="calc-grid">
+          <!-- Inputs Column -->
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+              <svg width="20" height="20" fill="none" stroke="var(--color-brand-azure)" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+              </svg>
+              Parámetros del Envío
+            </h3>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="calc-origin" class="form-label">País / Puerto de Origen</label>
+                <select id="calc-origin" class="form-select">
+                  <option value="CR-CALDERA" selected>Costa Rica · Puerto Caldera (Pacífico)</option>
+                  <option value="CR-LIMON">Costa Rica · Puerto Limón / Moín (Caribe)</option>
+                  <option value="CR-GAM">Costa Rica · San José / GAM</option>
+                  <option value="PA-COLON">Panamá · Puerto Colón (Caribe)</option>
+                  <option value="PA-BALBOA">Panamá · Puerto Balboa (Pacífico)</option>
+                  <option value="PA-CHIRIQUI">Panamá · David / Chiriquí</option>
+                  <option value="GT-BARRIOS">Guatemala · Puerto Barrios / Sto. Tomás</option>
+                  <option value="GT-CD">Guatemala · Ciudad de Guatemala</option>
+                  <option value="CA-REST">Otros Puntos de Centroamérica</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="calc-dest" class="form-label">País / Puerto de Destino</label>
+                <select id="calc-dest" class="form-select">
+                  <option value="PA-CHIRIQUI" selected>Panamá · David / Chiriquí</option>
+                  <option value="PA-CIUDAD">Panamá · Ciudad de Panamá</option>
+                  <option value="CR-GAM">Costa Rica · San José / GAM</option>
+                  <option value="CR-CALDERA">Costa Rica · Puerto Caldera</option>
+                  <option value="CR-LIMON">Costa Rica · Puerto Limón</option>
+                  <option value="GT-CD">Guatemala · Ciudad de Guatemala</option>
+                  <option value="CA-SICA">Honduras / El Salvador / Nicaragua</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="calc-cargo" class="form-label">Tipo de Carga o Mercancía</label>
+                <select id="calc-cargo" class="form-select">
+                  <option value="granel" selected>Granel / Fertilizantes / Sacos / Granos</option>
+                  <option value="fcl">Contenedor Marítimo FCL (20' / 40')</option>
+                  <option value="seco">Mercancía General / Materiales de Construcción</option>
+                  <option value="refrigerado">Carga Refrigerada / Perecederos / Fruta</option>
+                  <option value="lowboy">Maquinaria Pesada / Carga Sobredimensionada</option>
+                  <option value="vagoneta">Pétreos / Agregados / Volteo</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                  <label for="calc-weight" class="form-label" style="margin-bottom: 0;">Peso Aproximado</label>
+                  <span id="calc-weight-val" style="font-weight: 700; color: var(--color-brand-azure);">25 Ton</span>
+                </div>
+                <input type="range" id="calc-weight" min="5" max="60" value="25" step="1" style="width: 100%; accent-color: var(--color-brand-azure);">
+              </div>
+            </div>
+
+            <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 0.5rem;">
+              * Todas las unidades operan bajo póliza de seguro y seguimiento satelital continuo en tiempo real.
+            </p>
+          </div>
+
+          <!-- Summary Column -->
+          <div>
+            <div class="calc-summary-box">
+              <div>
+                <h4 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1.25rem;">
+                  Resumen de Requerimiento
+                </h4>
+
+                <div class="calc-summary-item">
+                  <span class="calc-summary-label">Origen:</span>
+                  <span id="sum-origin" class="calc-summary-val">-</span>
+                </div>
+                <div class="calc-summary-item">
+                  <span class="calc-summary-label">Destino:</span>
+                  <span id="sum-dest" class="calc-summary-val">-</span>
+                </div>
+                <div class="calc-summary-item">
+                  <span class="calc-summary-label">Categoría:</span>
+                  <span id="sum-cargo" class="calc-summary-val">-</span>
+                </div>
+                <div class="calc-summary-item">
+                  <span class="calc-summary-label">Peso:</span>
+                  <span id="sum-weight" class="calc-summary-val">-</span>
+                </div>
+                <div class="calc-summary-item">
+                  <span class="calc-summary-label">Equipo Recomendado:</span>
+                  <span id="sum-unit" class="calc-summary-val" style="color: var(--color-brand-azure);">-</span>
+                </div>
+
+                <div class="calc-total-pill">
+                  <div class="calc-total-pill-title">Corredor Operativo Estimado</div>
+                  <div id="sum-estimate" class="calc-total-pill-val">Costa Rica ⇄ Panamá</div>
+                </div>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.5rem;">
+                <a id="calc-btn-whatsapp" href="#" target="_blank" class="btn btn-primary" style="background: #25D366; border-color: #25D366; box-shadow: 0 4px 14px rgba(37,211,102,0.35);">
+                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.298.144.347.491 1.2.534 1.288.043.088.072.19.014.306-.058.115-.087.19-.174.289l-.26.3c-.087.088-.179.183-.077.359.101.174.453.746.969 1.206.666.592 1.229.775 1.403.863.173.087.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.42-.099.825zm-3.423-10.416c-4.408 0-7.994 3.586-7.995 7.996 0 1.439.387 2.822 1.096 4.043l-1.109 4.053 4.18-1.095c1.175.64 2.504.998 3.827.998 4.407 0 7.994-3.586 7.995-7.996.001-4.41-3.585-7.999-7.994-7.999z"/>
+                  </svg>
+                  <span>Enviar Cotización a WhatsApp</span>
+                </a>
+                <a id="calc-btn-email" href="#" class="btn btn-secondary">
+                  <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span>Solicitar Vía Correo Electrónico</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
   <!-- =========================================================================
        7. DIFFERENTIATORS & PROPRIETARY TECH
