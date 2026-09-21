@@ -237,7 +237,9 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   border: 1px solid transparent;
   transition: all var(--transition-base);
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
+  line-height: 1.4;
 }
 
 .btn-primary {
@@ -335,14 +337,8 @@ h1, h2, h3, h4, h5, h6 {
   transform: scale(1.02);
 }
 
-/* Logo Swap for Dark / Light mode with crisp white outline */
-.logo-dark-mode {
-  display: none;
-}
-.logo-light-mode {
-  display: block;
-}
-[data-theme="dark"] .logo-dark-mode {
+/* Universal Logo with crisp white outline */
+.logo-universal {
   display: block;
   /* Delineado blanco nítido (borde externo sin desenfoque) en contornos y letras */
   filter: 
@@ -354,9 +350,6 @@ h1, h2, h3, h4, h5, h6 {
     drop-shadow(-0.75px -0.75px 0 #ffffff)
     drop-shadow(0.75px -0.75px 0 #ffffff)
     drop-shadow(-0.75px 0.75px 0 #ffffff);
-}
-[data-theme="dark"] .logo-light-mode {
-  display: none;
 }
 
 .nav-desktop {
@@ -719,7 +712,7 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
-  padding: 2.25rem;
+  padding: 1.5rem;
   box-shadow: var(--shadow-xl);
 }
 
@@ -786,11 +779,17 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--bg-surface-subtle);
   border: 1px dashed var(--border-subtle);
   border-radius: var(--radius-lg);
-  padding: 2rem;
+  padding: 1.25rem;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+@media (min-width: 768px) {
+  .calc-summary-box {
+    padding: 2rem;
+  }
 }
 
 .calc-summary-item {
@@ -1315,152 +1314,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
 }
 
-/* --- Fleet & Operations Gallery --- */
-.gallery-section {
-  padding: 6rem 0;
-}
 
-.gallery-filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  justify-content: center;
-  margin-bottom: 3rem;
-}
-
-.gallery-filter-btn {
-  padding: 0.625rem 1.25rem;
-  border-radius: var(--radius-full);
-  background: var(--bg-surface-subtle);
-  border: 1px solid var(--border-subtle);
-  font-weight: 600;
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.gallery-filter-btn:hover {
-  border-color: var(--color-brand-azure);
-  color: var(--color-brand-azure);
-}
-
-.gallery-filter-btn.active {
-  background: var(--color-brand-azure);
-  color: #FFFFFF;
-  border-color: var(--color-brand-azure);
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 1.5rem;
-}
-
-.gallery-item {
-  position: relative;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
-  cursor: pointer;
-  background: var(--bg-surface-subtle);
-  border: 1px solid var(--border-card);
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.gallery-item:hover img {
-  transform: scale(1.08);
-}
-
-.gallery-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(11, 25, 44, 0.88) 0%, transparent 60%);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 1.5rem;
-  opacity: 0;
-  transition: opacity var(--transition-base);
-}
-
-.gallery-item:hover .gallery-overlay {
-  opacity: 1;
-}
-
-.gallery-caption {
-  color: #FFFFFF;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.gallery-category {
-  color: var(--color-brand-gold);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-}
-
-/* Lightbox Modal */
-.lightbox-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.92);
-  z-index: 2000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  backdrop-filter: blur(8px);
-}
-
-.lightbox-modal.open {
-  display: flex;
-}
-
-.lightbox-content {
-  max-width: 90vw;
-  max-height: 85vh;
-  position: relative;
-}
-
-.lightbox-content img {
-  max-width: 100%;
-  max-height: 85vh;
-  object-fit: contain;
-  border-radius: var(--radius-md);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75);
-}
-
-.lightbox-close {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
-  color: #FFFFFF;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 1.5rem;
-  transition: background var(--transition-fast);
-}
-
-.lightbox-close:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
 
 /* --- Multi-Hub Directory & Contact Section --- */
 .contact-section {

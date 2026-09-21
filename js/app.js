@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initFleetShowcase();
   initFreightCalculator();
-  initGallery();
   initContactForm();
 });
 
@@ -398,65 +397,6 @@ function initFreightCalculator() {
   updateCalc();
 }
 
-/* ==========================================================================
-   7. Gallery & Lightbox Controller
-   ========================================================================== */
-function initGallery() {
-  const filterBtns = document.querySelectorAll('.gallery-filter-btn');
-  const galleryItems = document.querySelectorAll('.gallery-item');
-  const lightbox = document.getElementById('lightbox-modal');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const lightboxClose = document.getElementById('lightbox-close');
-
-  if (!galleryItems.length) return;
-
-  // Filter functionality
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filter = btn.getAttribute('data-filter');
-      galleryItems.forEach(item => {
-        const cat = item.getAttribute('data-category');
-        if (filter === 'all' || cat === filter) {
-          item.style.display = 'block';
-        } else {
-          item.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // Lightbox click
-  galleryItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      if (img && lightbox && lightboxImg) {
-        lightboxImg.src = img.src;
-        lightbox.classList.add('open');
-        document.body.style.overflow = 'hidden';
-      }
-    });
-  });
-
-  function closeLightbox() {
-    if (lightbox) {
-      lightbox.classList.remove('open');
-      document.body.style.overflow = '';
-    }
-  }
-
-  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-  if (lightbox) {
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-  }
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
-  });
-}
 
 /* ==========================================================================
    8. Contact Form Handling (Instant Feedback)
