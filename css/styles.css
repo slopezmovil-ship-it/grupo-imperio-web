@@ -929,17 +929,13 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1.5rem;
 }
 
-@media (min-width: 1024px) {
-  .spotlight-card {
-    grid-template-columns: 1.25fr 1fr;
-  }
-}
-
 .spotlight-content {
   padding: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
@@ -966,6 +962,9 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
   margin-bottom: 2.5rem;
+  justify-content: center;
+  max-width: 800px;
+  width: 100%;
 }
 
 .spotlight-hub-box {
@@ -990,16 +989,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0.25rem;
 }
 
-.spotlight-media {
-  position: relative;
-  min-height: 320px;
-}
-
-.spotlight-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
 /* --- Interactive Fleet Showcase --- */
 .fleet-section {
@@ -1062,20 +1051,23 @@ h1, h2, h3, h4, h5, h6 {
 
 .fleet-image-wrap {
   position: relative;
-  background: var(--bg-page);
+  background: var(--bg-surface-subtle);
   border-radius: var(--radius-lg);
-  padding: 2.5rem;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--border-subtle);
-  min-height: 280px;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  box-shadow: var(--shadow-sm);
 }
 
 .fleet-image-wrap img {
-  max-height: 250px;
-  width: auto;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
   transition: transform var(--transition-base);
 }
 
