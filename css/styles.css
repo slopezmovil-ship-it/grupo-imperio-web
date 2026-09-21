@@ -1068,10 +1068,16 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform var(--transition-base);
+  transition: opacity 0.28s ease-in-out, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
 }
 
-.fleet-display-card:hover .fleet-image-wrap img {
+.fleet-image-wrap img.fade-out {
+  opacity: 0;
+  transform: scale(0.97);
+}
+
+.fleet-display-card:hover .fleet-image-wrap img:not(.fade-out) {
   transform: scale(1.04);
 }
 

@@ -272,33 +272,52 @@ function initFleetShowcase() {
 
   if (!tabBtns.length || !titleEl) return;
 
+  let isTransitioning = false;
+
   tabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      if (btn.classList.contains('active') || isTransitioning) return;
 
       const key = btn.getAttribute('data-fleet');
       const item = fleetData[key];
       if (!item) return;
 
-      // Animate transition
-      const card = document.querySelector('.fleet-display-card');
-      card.style.opacity = '0.4';
-      card.style.transform = 'scale(0.99)';
+      isTransitioning = true;
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
+      // 1. Iniciar desvanecimiento suave de la imagen
+      if (imgEl) {
+        imgEl.classList.add('fade-out');
+      }
+
+      // Pre-cargar la imagen para evitar parpadeos en blanco
+      const preloadImg = new Image();
+      preloadImg.src = item.img;
+
+      // 2. Al cabo de 180ms cambiar texto e imagen cuando está desvanecida
       setTimeout(() => {
         titleEl.textContent = item.title;
         descEl.textContent = item.desc;
-        imgEl.src = item.img;
-        imgEl.alt = item.title;
+        if (imgEl) {
+          imgEl.src = item.img;
+          imgEl.alt = item.title;
+        }
         capEl.textContent = item.capacidad;
         dimEl.textContent = item.dimensiones;
         cargaEl.textContent = item.cargaIdeal;
         segEl.textContent = item.seguridad;
 
-        card.style.opacity = '1';
-        card.style.transform = 'scale(1)';
-      }, 150);
+        // 3. Reaparecer con suave fundido hacia arriba
+        requestAnimationFrame(() => {
+          if (imgEl) {
+            imgEl.classList.remove('fade-out');
+          }
+          setTimeout(() => {
+            isTransitioning = false;
+          }, 280);
+        });
+      }, 200);
     });
   });
 }
