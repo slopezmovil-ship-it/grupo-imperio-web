@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initFleetShowcase();
   initFreightCalculator();
+  initRegionalMap();
   initContactForm();
 });
 
@@ -438,5 +439,112 @@ function initContactForm() {
       window.open(`https://wa.me/50670246170?text=${waText}`, '_blank');
       form.reset();
     }, 1200);
+  });
+}
+
+/* ==========================================================================
+   9. Interactive Central America Regional Map & Hub Navigation
+   ========================================================================== */
+function initRegionalMap() {
+  const mapBox = document.getElementById('regional-map-box');
+  const tooltip = document.getElementById('map-tooltip');
+  const tooltipFlag = document.getElementById('tooltip-flag');
+  const tooltipCountry = document.getElementById('tooltip-country');
+  const tooltipOffice = document.getElementById('tooltip-office');
+  const tooltipDetail = document.getElementById('tooltip-detail');
+
+  if (!mapBox || !tooltip) return;
+
+  const flagMap = {
+    cr: 'assets/flag-cr.svg',
+    pa: 'assets/flag-pa.svg',
+    gt: 'assets/flag-gt.svg',
+    ni: 'assets/flag-ni.svg'
+  };
+
+  const interactiveElements = mapBox.querySelectorAll('.map-country.active-hub, .map-hub-pin');
+
+  function navigateToHub(hubKey) {
+    if (!hubKey) return;
+    const targetCard = document.getElementById('hub-' + hubKey);
+    if (!targetCard) return;
+
+    // Smooth scroll into view with center alignment
+    targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Trigger visual spotlight and blink animation
+    targetCard.classList.remove('hub-card-spotlight');
+    void targetCard.offsetWidth; // Force DOM reflow to restart animation reliably
+    targetCard.classList.add('hub-card-spotlight');
+
+    setTimeout(() => {
+      targetCard.classList.remove('hub-card-spotlight');
+    }, 2800);
+  }
+
+  // Hover and tooltip management
+  interactiveElements.forEach(el => {
+    const hubKey = el.getAttribute('data-hub');
+
+    el.addEventListener('mouseenter', () => {
+      const countryEl = el.classList.contains('map-country') ? el : mapBox.querySelector(`.map-country[data-hub="${hubKey}"]`);
+      if (countryEl) countryEl.classList.add('is-hovered');
+
+      const name = countryEl ? countryEl.getAttribute('data-name') : '';
+      const office = countryEl ? countryEl.getAttribute('data-office') : '';
+      const detail = countryEl ? countryEl.getAttribute('data-detail') : '';
+
+      if (tooltipCountry) tooltipCountry.textContent = name;
+      if (tooltipOffice) tooltipOffice.textContent = office;
+      if (tooltipDetail) tooltipDetail.textContent = detail;
+      if (tooltipFlag && flagMap[hubKey]) {
+        tooltipFlag.style.backgroundImage = `url(${flagMap[hubKey]})`;
+      }
+      tooltip.style.display = 'block';
+      tooltip.style.opacity = '1';
+    });
+
+    el.addEventListener('mousemove', (e) => {
+      const boxRect = mapBox.getBoundingClientRect();
+      let x = e.clientX - boxRect.left + 15;
+      let y = e.clientY - boxRect.top - 20;
+
+      // Keep tooltip fully visible within container boundaries
+      if (x + 280 > boxRect.width) x = e.clientX - boxRect.left - 290;
+      if (y + 120 > boxRect.height) y = e.clientY - boxRect.top - 100;
+      if (x < 10) x = 10;
+      if (y < 10) y = 10;
+
+      tooltip.style.left = `${x}px`;
+      tooltip.style.top = `${y}px`;
+    });
+
+    el.addEventListener('mouseleave', () => {
+      const countryEl = el.classList.contains('map-country') ? el : mapBox.querySelector(`.map-country[data-hub="${hubKey}"]`);
+      if (countryEl) countryEl.classList.remove('is-hovered');
+
+      tooltip.style.display = 'none';
+      tooltip.style.opacity = '0';
+    });
+
+    el.addEventListener('click', () => {
+      navigateToHub(hubKey);
+    });
+
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        navigateToHub(hubKey);
+      }
+    });
+  });
+
+  // Quick button bar below map
+  const quickBtns = document.querySelectorAll('.map-quick-btn');
+  quickBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const hubKey = btn.getAttribute('data-hub');
+      navigateToHub(hubKey);
+    });
   });
 }

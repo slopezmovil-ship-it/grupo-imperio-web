@@ -1314,21 +1314,343 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--bg-surface-subtle);
 }
 
+/* --- Interactive Central America Regional Map & Hubs --- */
+.regional-map-wrapper {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem 2rem 1.75rem 2rem;
+  box-shadow: var(--shadow-xl);
+  margin-top: 2.5rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.map-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  gap: 0.5rem;
+}
+
+.map-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  background: rgba(0, 136, 203, 0.1);
+  color: var(--color-brand-azure);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  border: 1px solid rgba(0, 136, 203, 0.25);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: dotPulse 2s infinite;
+}
+
+@keyframes dotPulse {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.map-instruction {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 650px;
+}
+
+.regional-map-container {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(135deg, rgba(11, 25, 44, 0.03) 0%, rgba(0, 136, 203, 0.05) 100%);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .regional-map-container {
+  background: linear-gradient(135deg, rgba(6, 13, 23, 0.9) 0%, rgba(11, 25, 44, 0.8) 100%);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.regional-ca-map {
+  width: 100%;
+  height: auto;
+  max-height: 480px;
+  display: block;
+}
+
+.map-grid-lines line {
+  stroke: var(--border-subtle);
+  stroke-width: 0.8;
+  stroke-dasharray: 4, 8;
+  opacity: 0.6;
+}
+
+[data-theme="dark"] .map-grid-lines line {
+  stroke: rgba(255, 255, 255, 0.07);
+}
+
+.ocean-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  fill: var(--text-muted);
+  opacity: 0.45;
+  font-family: var(--font-primary);
+  user-select: none;
+}
+
+/* Transit Countries (Muted) */
+.map-country.transit {
+  fill: rgba(148, 163, 184, 0.18);
+  stroke: rgba(148, 163, 184, 0.45);
+  stroke-width: 1.2;
+  stroke-dasharray: 4, 4;
+  transition: all var(--transition-base);
+}
+
+[data-theme="dark"] .map-country.transit {
+  fill: rgba(255, 255, 255, 0.05);
+  stroke: rgba(255, 255, 255, 0.12);
+}
+
+/* Active Hub Countries with Flags */
+.map-country.active-hub {
+  cursor: pointer;
+  stroke: #0088CB;
+  stroke-width: 2.2;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.map-country.active-hub:hover,
+.map-country.active-hub.is-hovered {
+  stroke: #F59E0B;
+  stroke-width: 3.5;
+  filter: drop-shadow(0 0 18px rgba(0, 136, 203, 0.85)) brightness(1.12);
+}
+
+/* Logistics Route Line */
+.map-logistics-line {
+  fill: none;
+  stroke: #0088CB;
+  stroke-width: 2.5;
+  stroke-dasharray: 6, 6;
+  opacity: 0.75;
+  animation: logisticsDash 25s linear infinite;
+}
+
+@keyframes logisticsDash {
+  to { stroke-dashoffset: -200; }
+}
+
+/* Hub Beacon Pins */
+.map-hub-pin {
+  cursor: pointer;
+  outline: none;
+}
+
+.hub-pulse-ring {
+  fill: rgba(0, 136, 203, 0.25);
+  stroke: #0088CB;
+  stroke-width: 1.5;
+  animation: hubRadarPulse 2s ease-out infinite;
+  transform-origin: center;
+}
+
+.hub-pin-dot {
+  fill: #0088CB;
+  stroke: #FFFFFF;
+  stroke-width: 2;
+  transition: transform var(--transition-fast);
+}
+
+.hub-pulse-ring.central {
+  fill: rgba(245, 158, 11, 0.3);
+  stroke: #F59E0B;
+  animation: hubRadarPulseCentral 1.8s ease-out infinite;
+}
+
+.hub-pin-dot.central {
+  fill: #F59E0B;
+  stroke: #FFFFFF;
+}
+
+.map-hub-pin:hover .hub-pin-dot {
+  transform: scale(1.35);
+}
+
+.hub-pin-title {
+  font-family: var(--font-primary);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  fill: var(--text-primary);
+  text-anchor: middle;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);
+  pointer-events: none;
+  user-select: none;
+}
+
+[data-theme="dark"] .hub-pin-title {
+  fill: #F8FAFC;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+.hub-pin-title.central {
+  fill: #D97706;
+  font-weight: 800;
+}
+
+[data-theme="dark"] .hub-pin-title.central {
+  fill: #FBBF24;
+}
+
+@keyframes hubRadarPulse {
+  0% { r: 5; opacity: 1; }
+  100% { r: 24; opacity: 0; }
+}
+
+@keyframes hubRadarPulseCentral {
+  0% { r: 6; opacity: 1; }
+  100% { r: 30; opacity: 0; }
+}
+
+/* Floating Interactive Tooltip */
+.map-interactive-tooltip {
+  position: absolute;
+  z-index: 50;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.15rem;
+  box-shadow: var(--shadow-xl), 0 0 20px rgba(0, 136, 203, 0.25);
+  pointer-events: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  min-width: 240px;
+  max-width: 320px;
+}
+
+.tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+
+.tooltip-flag {
+  width: 28px;
+  height: 18px;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  display: inline-block;
+  background-size: cover;
+  background-position: center;
+}
+
+.tooltip-country {
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.tooltip-office {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-brand-azure);
+  text-transform: uppercase;
+}
+
+.tooltip-detail {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.tooltip-action {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #10B981;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.4rem;
+}
+
+/* Quick Bar below Map */
+.map-quick-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+}
+
+.quick-bar-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.map-quick-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.map-quick-btn:hover {
+  background: var(--bg-surface);
+  border-color: var(--color-brand-azure);
+  color: var(--color-brand-azure);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* --- Multi-Hub Directory Cards --- */
 .hubs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
-  margin-top: 3.5rem;
+  margin-top: 2rem;
   margin-bottom: 4rem;
 }
 
 .hub-card {
+  position: relative;
   background: var(--bg-surface);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-xl);
   padding: 2.25rem;
   box-shadow: var(--shadow-md);
-  transition: all var(--transition-base);
+  transition: transform var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+  overflow: hidden;
 }
 
 .hub-card:hover {
@@ -1344,15 +1666,90 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1.5rem;
   padding-bottom: 1.25rem;
   border-bottom: 1px solid var(--border-subtle);
+  position: relative;
 }
 
-.hub-flag {
-  font-size: 2rem;
+.hub-badge-flag {
+  width: 48px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  transition: transform var(--transition-fast);
+}
+
+.hub-card:hover .hub-badge-flag {
+  transform: scale(1.08);
+}
+
+.hub-badge-flag img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hub-tag {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-brand-azure);
+  margin-bottom: 0.2rem;
+}
+
+.hub-tag.central {
+  color: var(--color-brand-gold);
 }
 
 .hub-name {
   font-size: 1.3rem;
   font-weight: 700;
+}
+
+/* Spotlight Animation when targeted from Map */
+@keyframes hubCardSpotlight {
+  0% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 136, 203, 0);
+    border-color: var(--border-card);
+  }
+  20% {
+    transform: translateY(-10px) scale(1.025);
+    box-shadow: 0 0 35px rgba(0, 136, 203, 0.75), 0 0 0 4px var(--color-brand-azure);
+    border-color: var(--color-brand-azure);
+  }
+  40% {
+    transform: translateY(-5px) scale(1.015);
+    box-shadow: 0 0 20px rgba(0, 136, 203, 0.4), 0 0 0 2px var(--color-brand-azure);
+    border-color: var(--color-brand-azure);
+  }
+  60% {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.8), 0 0 0 4px var(--color-brand-gold);
+    border-color: var(--color-brand-gold);
+  }
+  80% {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 0 20px rgba(0, 136, 203, 0.4), 0 0 0 2px var(--color-brand-azure);
+    border-color: var(--color-brand-azure);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-card);
+  }
+}
+
+.hub-card.hub-card-spotlight {
+  animation: hubCardSpotlight 2.6s ease-in-out forwards !important;
+  z-index: 20;
 }
 
 .hub-dept-list {

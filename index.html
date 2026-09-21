@@ -883,14 +883,192 @@
         </p>
       </div>
 
-      <!-- 3 Regional Hubs Cards -->
-      <div class="hubs-grid">
+
+      <!-- =========================================================================
+           INTERACTIVE REGIONAL MAP: GUATEMALA TO PANAMA
+           ========================================================================= -->
+      <div class="regional-map-wrapper reveal delay-1">
+        <div class="map-card-header">
+          <div class="map-status-pill">
+            <span class="pulse-dot"></span> Presencia Operativa Activa: 4 Sedes Clave
+          </div>
+          <p class="map-instruction">
+            Pase el cursor para explorar el corredor logístico o haga clic en un país para ver los contactos de su oficina
+          </p>
+        </div>
+
+        <div class="regional-map-container" id="regional-map-box">
+          <svg viewBox="0 0 1000 480" class="regional-ca-map" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <!-- Guatemala Flag Pattern -->
+              <pattern id="flag-pattern-gt" patternUnits="userSpaceOnUse" x="45.5" y="58.1" width="242.9" height="149.8">
+                <rect width="81" height="149.8" fill="#4997D0"/>
+                <rect x="81" width="81" height="149.8" fill="#FFFFFF"/>
+                <rect x="162" width="81" height="149.8" fill="#4997D0"/>
+                <circle cx="121.5" cy="74.9" r="14" fill="none" stroke="#2E7D32" stroke-width="2" stroke-dasharray="3,2"/>
+                <rect x="113.5" y="68.9" width="16" height="12" fill="#FFF9C4" stroke="#8D6E63" stroke-width="0.8"/>
+              </pattern>
+
+              <!-- Nicaragua Flag Pattern -->
+              <pattern id="flag-pattern-ni" patternUnits="userSpaceOnUse" x="322.1" y="160.9" width="274.3" height="157.4">
+                <rect width="274.3" height="52.5" fill="#0067C6"/>
+                <rect y="52.5" width="274.3" height="52.4" fill="#FFFFFF"/>
+                <rect y="104.9" width="274.3" height="52.5" fill="#0067C6"/>
+                <circle cx="137.1" cy="78.7" r="16" fill="none" stroke="#F59E0B" stroke-width="1"/>
+                <polygon points="137.1,68 148,87 126.2,87" fill="#E0F2FE" stroke="#F59E0B" stroke-width="1"/>
+                <polygon points="130,87 134,75 138,87" fill="#15803D"/>
+                <polygon points="136,87 140,77 144,87" fill="#16A34A"/>
+              </pattern>
+
+              <!-- Costa Rica Flag Pattern -->
+              <pattern id="flag-pattern-cr" patternUnits="userSpaceOnUse" x="426.9" y="300.3" width="205.9" height="109.7">
+                <rect width="205.9" height="109.7" fill="#002B7F"/>
+                <rect y="18.3" width="205.9" height="73.1" fill="#FFFFFF"/>
+                <rect y="36.6" width="205.9" height="36.5" fill="#CE1126"/>
+              </pattern>
+
+              <!-- Panama Flag Pattern -->
+              <pattern id="flag-pattern-pa" patternUnits="userSpaceOnUse" x="607.4" y="359.2" width="347.1" height="87.7">
+                <rect width="347.1" height="87.7" fill="#FFFFFF"/>
+                <rect x="173.55" y="0" width="173.55" height="43.85" fill="#DA121A"/>
+                <rect x="0" y="43.85" width="173.55" height="43.85" fill="#072357"/>
+                <polygon points="86.8,11 90.3,21.8 101.7,21.8 92.4,28.5 96,39.3 86.8,32.6 77.5,39.3 81.1,28.5 71.8,21.8 83.2,21.8" fill="#072357"/>
+                <polygon points="260.3,55 263.8,65.8 275.2,65.8 265.9,72.5 269.5,83.3 260.3,76.6 251,83.3 254.6,72.5 245.3,65.8 256.7,65.8" fill="#DA121A"/>
+              </pattern>
+            </defs>
+
+            <!-- Ocean Background Grid & Lat/Lon Lines -->
+            <g class="map-grid-lines">
+              <line x1="40" y1="120" x2="960" y2="120" />
+              <line x1="40" y1="240" x2="960" y2="240" />
+              <line x1="40" y1="360" x2="960" y2="360" />
+              <line x1="200" y1="40" x2="200" y2="440" />
+              <line x1="450" y1="40" x2="450" y2="440" />
+              <line x1="700" y1="40" x2="700" y2="440" />
+            </g>
+
+            <!-- Geographic Water Annotations -->
+            <g class="map-labels-geo">
+              <text x="75" y="380" class="ocean-label">OCÉANO PACÍFICO</text>
+              <text x="680" y="90" class="ocean-label">MAR CARIBE</text>
+            </g>
+
+            <!-- Transit Corridor Countries (Uncolored / Neutral Slate) -->
+            <g class="map-transit-group">
+              <path id="path-blz" d="M232.7,58.5L232.2,53.1L239.5,51.4L250.5,55.7L272.3,33.6L283.8,33.1L284.0,38.5L295.5,38.7L294.5,48.6L284.7,64.5L290.0,70.2L283.6,83.3L287.5,86.8L280.4,105.3L268.5,115.1L257.6,116.2L245.5,129.0L227.4,129.0L232.2,87.6L232.7,58.5Z" class="map-country transit" data-tooltip="Belice · Corredor de Enlace" />
+              <path id="path-slv" d="M314.6,220.8L307.8,229.4L272.7,228.9L250.9,225.3L225.8,218.1L192.1,215.8L174.9,207.9L176.8,202.5L197.5,193.3L208.9,189.2L205.7,184.9L219.9,182.6L237.8,185.7L250.9,193.0L269.2,198.9L271.4,203.9L298.0,199.5L310.5,202.1L318.8,206.1L314.6,220.8Z" class="map-country transit" data-tooltip="El Salvador · Corredor Logístico SICA" />
+              <path id="path-hnd" d="M343.5,235.4L333.0,224.0L314.6,220.8L318.8,206.1L310.5,202.1L298.0,199.5L271.4,203.9L269.2,198.9L250.9,193.0L237.8,185.7L219.9,182.6L232.5,173.3L227.7,166.1L231.9,159.1L260.7,148.8L288.4,134.8L294.7,136.2L308.0,129.8L325.3,129.3L330.9,132.3L340.4,130.4L368.5,133.7L396.6,132.8L416.1,128.7L423.2,124.6L442.5,126.5L457.0,129.0L472.9,128.1L485.0,125.0L512.7,130.1L522.3,130.9L540.8,137.7L558.4,145.9L580.4,151.6L596.4,161.7L575.6,160.9L567.2,165.9L546.1,170.7L530.8,170.7L517.4,175.4L505.2,173.7L494.9,168.1L488.6,169.2L480.8,178.0L475.0,177.6L473.9,185.2L452.8,195.3L441.6,199.7L435.4,204.2L417.5,196.8L404.4,206.6L391.7,206.3L377.5,207.2L378.8,225.2L369.9,225.5L362.3,233.9L343.5,235.4Z" class="map-country transit" data-tooltip="Honduras · Corredor Logístico SICA" />
+            </g>
+
+            <!-- Active Hub Countries with National Flags -->
+            <g class="map-active-group">
+              <!-- Guatemala -->
+              <path id="path-gtm" d="M174.9,207.9L143.8,201.5L105.9,200.8L78.2,193.6L45.5,178.4L47.0,167.7L54.1,159.1L45.5,152.3L74.6,122.4L152.5,122.3L154.1,109.8L144.2,107.5L137.5,99.6L115.1,91.1L92.5,78.9L119.9,78.8L119.9,58.1L176.6,58.1L232.7,58.5L232.2,87.6L227.4,129.0L245.5,129.0L265.3,135.6L270.6,130.1L288.4,134.8L260.7,148.8L231.9,159.1L227.7,166.1L232.5,173.3L219.9,182.6L205.7,184.9L208.9,189.2L197.5,193.3L176.8,202.5L174.9,207.9Z" class="map-country active-hub" data-hub="gt" data-name="Guatemala" data-office="Oficina Operativa (Zona 12)" data-detail="Puerto Barrios · Sto. Tomás de Castilla · Corredor Norte" fill="url(#flag-pattern-gt)" />
+
+              <!-- Nicaragua -->
+              <path id="path-nic" d="M440.8,305.0L419.8,293.4L391.4,278.6L378.1,266.3L352.5,254.7L322.1,238.2L328.8,232.5L338.9,238.0L343.5,235.4L362.3,233.9L369.9,225.5L378.8,225.2L377.5,207.2L391.7,206.3L404.4,206.6L417.5,196.8L435.4,204.2L441.6,199.7L452.8,195.3L473.9,185.2L475.0,177.6L480.8,178.0L488.6,169.2L494.9,168.1L505.2,173.7L517.4,175.4L530.8,170.7L546.1,170.7L567.2,165.9L575.6,160.9L596.4,161.7L591.2,165.2L588.1,173.4L594.3,186.8L580.3,199.3L573.8,214.0L571.8,230.2L575.1,239.7L576.6,256.2L567.3,259.8L561.6,275.5L565.8,285.2L553.4,294.5L556.2,304.5L565.5,310.5L551.0,318.3L533.1,315.8L523.0,308.3L503.8,305.2L489.9,310.0L449.9,300.3L440.8,305.0Z" class="map-country active-hub" data-hub="ni" data-name="Nicaragua" data-office="Oficina Operativa (Managua)" data-detail="Puerto Sandino · Puerto Corinto · Rutas Nacionales" fill="url(#flag-pattern-ni)" />
+
+              <!-- Costa Rica (Sede Central) -->
+              <path id="path-cri" d="M607.4,410.0L574.5,401.9L562.1,394.2L569.1,387.8L566.9,379.7L550.1,370.9L526.2,363.7L505.4,359.0L501.4,348.3L485.5,341.7L489.4,352.4L477.3,361.2L463.4,351.0L443.9,347.4L435.6,340.0L436.0,328.8L444.0,317.3L426.9,312.1L440.8,305.0L449.9,300.3L489.9,310.0L503.8,305.2L523.0,308.3L533.1,315.8L551.0,318.3L565.5,310.5L580.9,330.4L604.3,345.2L632.8,360.8L609.4,364.1L609.7,378.9L622.3,384.3L613.3,388.7L615.6,395.3L610.6,402.8L607.4,410.0Z" class="map-country active-hub" data-hub="cr" data-name="Costa Rica" data-office="Oficinas Centrales Regionales (San José)" data-detail="Puerto Caldera · Puerto Limón / Moín · GAM" fill="url(#flag-pattern-cr)" />
+
+              <!-- Panamá -->
+              <path id="path-pan" d="M915.8,446.8L895.6,436.2L882.6,416.4L897.6,406.6L882.2,404.1L870.9,392.0L840.6,381.8L814.1,384.1L801.8,396.9L777.3,406.1L764.1,407.4L758.1,415.0L787.1,434.9L770.5,439.6L761.7,445.0L733.5,446.9L723.0,425.0L715.1,431.2L695.1,429.1L682.9,414.3L658.0,411.9L642.2,407.6L616.2,407.6L614.3,415.6L607.4,410.0L610.6,402.8L615.6,395.3L613.3,388.7L622.3,384.3L609.7,378.9L609.4,364.1L632.8,360.8L654.6,374.0L653.4,381.8L677.6,383.4L683.3,380.4L700.0,389.5L729.8,386.8L755.6,377.5L792.5,370.1L813.2,359.2L846.7,361.3L844.4,364.9L878.2,366.2L905.2,372.5L925.0,383.6L947.8,393.7L940.5,399.1L954.5,420.7L943.1,431.6L923.6,428.9L915.8,446.8Z" class="map-country active-hub" data-hub="pa" data-name="Panamá" data-office="Oficina Operativa (David, Chiriquí)" data-detail="Puerto Colón · Puerto Balboa · Paso Canoas · Cd. de Panamá" fill="url(#flag-pattern-pa)" />
+            </g>
+
+            <!-- Pan-American Logistics Route Corridor -->
+            <path d="M 149.9 174.9 Q 280 230 409.0 267.3 T 539.1 347.6 T 639.7 402.6 T 816.6 382.2" class="map-logistics-line" />
+
+            <!-- Hub Beacon Pins -->
+            <g class="map-pins-layer">
+              <!-- Guatemala Pin -->
+              <g class="map-hub-pin" data-hub="gt" transform="translate(149.9, 174.9)" tabindex="0" role="button" aria-label="Sede Guatemala">
+                <circle r="14" class="hub-pulse-ring" />
+                <circle r="6" class="hub-pin-dot" />
+                <circle r="2.5" fill="#FFFFFF" />
+                <text y="-14" class="hub-pin-title">GUATEMALA</text>
+              </g>
+
+              <!-- Nicaragua Pin -->
+              <g class="map-hub-pin" data-hub="ni" transform="translate(409.0, 267.3)" tabindex="0" role="button" aria-label="Sede Nicaragua">
+                <circle r="14" class="hub-pulse-ring" />
+                <circle r="6" class="hub-pin-dot" />
+                <circle r="2.5" fill="#FFFFFF" />
+                <text y="-14" class="hub-pin-title">NICARAGUA</text>
+              </g>
+
+              <!-- Costa Rica Pin (Central HQ) -->
+              <g class="map-hub-pin central-hq" data-hub="cr" transform="translate(539.1, 347.6)" tabindex="0" role="button" aria-label="Sede Central Costa Rica">
+                <circle r="18" class="hub-pulse-ring central" />
+                <circle r="8" class="hub-pin-dot central" />
+                <circle r="3" fill="#FFFFFF" />
+                <text y="-16" class="hub-pin-title central">COSTA RICA · SEDE CENTRAL</text>
+              </g>
+
+              <!-- Panama Pin (David) -->
+              <g class="map-hub-pin" data-hub="pa" transform="translate(639.7, 402.6)" tabindex="0" role="button" aria-label="Sede Panamá David">
+                <circle r="14" class="hub-pulse-ring" />
+                <circle r="6" class="hub-pin-dot" />
+                <circle r="2.5" fill="#FFFFFF" />
+                <text y="22" class="hub-pin-title">DAVID</text>
+              </g>
+
+              <!-- Panama Pin (Panama City) -->
+              <g class="map-hub-pin" data-hub="pa" transform="translate(816.6, 382.2)" tabindex="0" role="button" aria-label="Sede Panamá Ciudad">
+                <circle r="14" class="hub-pulse-ring" />
+                <circle r="6" class="hub-pin-dot" />
+                <circle r="2.5" fill="#FFFFFF" />
+                <text y="-14" class="hub-pin-title">PANAMÁ</text>
+              </g>
+            </g>
+          </svg>
+
+          <!-- Floating Interactive Tooltip -->
+          <div class="map-interactive-tooltip" id="map-tooltip" style="display: none;">
+            <div class="tooltip-header">
+              <span class="tooltip-flag" id="tooltip-flag"></span>
+              <div>
+                <div class="tooltip-country" id="tooltip-country"></div>
+                <div class="tooltip-office" id="tooltip-office"></div>
+              </div>
+            </div>
+            <div class="tooltip-detail" id="tooltip-detail"></div>
+            <div class="tooltip-action">
+              <span>Haga clic para ver teléfonos y contactos</span>
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Hub Shortcut Buttons below map -->
+        <div class="map-quick-bar">
+          <span class="quick-bar-label">Acceso directo a sedes:</span>
+          <button type="button" class="map-quick-btn" data-hub="cr">
+            <img src="assets/flag-cr.svg" alt="CR" width="18" height="12"> Costa Rica (Central)
+          </button>
+          <button type="button" class="map-quick-btn" data-hub="pa">
+            <img src="assets/flag-pa.svg" alt="PA" width="18" height="12"> Panamá (David / Colón)
+          </button>
+          <button type="button" class="map-quick-btn" data-hub="gt">
+            <img src="assets/flag-gt.svg" alt="GT" width="18" height="12"> Guatemala (Zona 12)
+          </button>
+          <button type="button" class="map-quick-btn" data-hub="ni">
+            <img src="assets/flag-ni.svg" alt="NI" width="18" height="12"> Nicaragua (Managua)
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Regional Hubs Cards -->
+      <div class="hubs-grid" id="hubs-directory">
         <!-- Costa Rica HQ -->
-        <div class="hub-card reveal">
+        <div class="hub-card reveal" id="hub-cr">
           <div class="hub-header">
-            <span class="hub-flag">🇨🇷</span>
+            <div class="hub-badge-flag">
+              <img src="assets/flag-cr.svg" alt="Bandera Costa Rica" width="44" height="30">
+            </div>
             <div>
-              <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-brand-azure); font-weight: 700;">Oficinas Centrales</div>
+              <div class="hub-tag central">Sede Central Regional</div>
               <h3 class="hub-name">Costa Rica (San José)</h3>
             </div>
           </div>
@@ -942,11 +1120,13 @@
         </div>
 
         <!-- Panamá Hub -->
-        <div class="hub-card reveal delay-1">
+        <div class="hub-card reveal delay-1" id="hub-pa">
           <div class="hub-header">
-            <span class="hub-flag">🇵🇦</span>
+            <div class="hub-badge-flag">
+              <img src="assets/flag-pa.svg" alt="Bandera Panamá" width="44" height="30">
+            </div>
             <div>
-              <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-brand-azure); font-weight: 700;">Oficinas Operativas</div>
+              <div class="hub-tag">Oficinas Operativas</div>
               <h3 class="hub-name">Panamá (David, Chiriquí)</h3>
             </div>
           </div>
@@ -979,11 +1159,13 @@
         </div>
 
         <!-- Guatemala Hub -->
-        <div class="hub-card reveal delay-2">
+        <div class="hub-card reveal delay-2" id="hub-gt">
           <div class="hub-header">
-            <span class="hub-flag">🇬🇹</span>
+            <div class="hub-badge-flag">
+              <img src="assets/flag-gt.svg" alt="Bandera Guatemala" width="44" height="30">
+            </div>
             <div>
-              <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-brand-azure); font-weight: 700;">Oficinas Operativas</div>
+              <div class="hub-tag">Oficinas Operativas</div>
               <h3 class="hub-name">Guatemala (Zona 12)</h3>
             </div>
           </div>
@@ -1018,11 +1200,13 @@
         </div>
 
         <!-- Nicaragua Hub -->
-        <div class="hub-card reveal delay-3">
+        <div class="hub-card reveal delay-3" id="hub-ni">
           <div class="hub-header">
-            <span class="hub-flag">🇳🇮</span>
+            <div class="hub-badge-flag">
+              <img src="assets/flag-ni.svg" alt="Bandera Nicaragua" width="44" height="30">
+            </div>
             <div>
-              <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-brand-azure); font-weight: 700;">Oficinas Operativas</div>
+              <div class="hub-tag">Oficinas Operativas</div>
               <h3 class="hub-name">Nicaragua (Managua)</h3>
             </div>
           </div>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" width="500" height="300">
+  <rect width="500" height="100" fill="#0067C6"/>
+  <rect y="100" width="500" height="100" fill="#FFFFFF"/>
+  <rect y="200" width="500" height="100" fill="#0067C6"/>
+  <!-- Central Coat of Arms -->
+  <g transform="translate(250, 150) scale(0.6)">
+    <!-- Circular Golden Ring text area -->
+    <circle r="46" fill="none" stroke="#F59E0B" stroke-width="2"/>
+    <text font-family="Arial, sans-serif" font-size="7" font-weight="bold" fill="#0B192C" text-anchor="middle">
+      <textPath href="#ni-text-path" startOffset="50%">REPUBLICA DE NICARAGUA</textPath>
+    </text>
+    <!-- Triangle -->
+    <polygon points="0,-36 38,28 -38,28" fill="#E0F2FE" stroke="#F59E0B" stroke-width="3"/>
+    <!-- Volcanoes inside triangle -->
+    <polygon points="-32,28 -18,0 0,28" fill="#15803D"/>
+    <polygon points="-12,28 0,4 12,28" fill="#16A34A"/>
+    <polygon points="0,28 18,2 32,28" fill="#15803D"/>
+    <!-- Water base -->
+    <path d="M-36,25 Q0,20 36,25 L36,28 L-36,28 Z" fill="#0284C7"/>
+    <!-- Rainbow arc -->
+    <path d="M-22,6 A25,25 0 0,1 22,6" fill="none" stroke="#EF4444" stroke-width="2"/>
+    <path d="M-20,7 A23,23 0 0,1 20,7" fill="none" stroke="#F59E0B" stroke-width="2"/>
+    <path d="M-18,8 A21,21 0 0,1 18,8" fill="none" stroke="#3B82F6" stroke-width="2"/>
+    <!-- Phrygian Cap / Sun Glow -->
+    <circle cx="0" cy="-6" r="3" fill="#DC2626"/>
+  </g>
+</svg>

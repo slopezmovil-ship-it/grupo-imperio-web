@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 375" width="600" height="375">
+  <rect width="200" height="375" fill="#4997D0"/>
+  <rect x="200" width="200" height="375" fill="#FFFFFF"/>
+  <rect x="400" width="200" height="375" fill="#4997D0"/>
+  <!-- Central Stylized Coat of Arms -->
+  <g transform="translate(300, 187) scale(0.65)">
+    <!-- Laurel Wreath -->
+    <path d="M-55,20 C-65,-30 -20,-75 0,-85 C20,-75 65,-30 55,20 C45,55 0,75 0,75 C0,75 -45,55 -55,20 Z" fill="none" stroke="#2E7D32" stroke-width="5" stroke-dasharray="8,5"/>
+    <!-- Crossed Rifles and Swords -->
+    <line x1="-50" y1="50" x2="50" y2="-50" stroke="#8D6E63" stroke-width="6"/>
+    <line x1="50" y1="50" x2="-50" y2="-50" stroke="#8D6E63" stroke-width="6"/>
+    <line x1="-40" y1="40" x2="40" y2="-40" stroke="#CFD8DC" stroke-width="3"/>
+    <line x1="40" y1="40" x2="-40" y2="-40" stroke="#CFD8DC" stroke-width="3"/>
+    <!-- Scroll parchment -->
+    <rect x="-30" y="-30" width="60" height="50" rx="3" fill="#FFF9C4" stroke="#D7CCC8" stroke-width="2"/>
+    <text x="0" y="-12" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#37474F" text-anchor="middle">LIBERTAD</text>
+    <text x="0" y="2" font-family="Arial, sans-serif" font-size="7" fill="#37474F" text-anchor="middle">15 DE</text>
+    <text x="0" y="14" font-family="Arial, sans-serif" font-size="6" fill="#37474F" text-anchor="middle">SETIEMBRE</text>
+    <!-- Quetzal bird -->
+    <path d="M-8,-45 C-12,-55 5,-60 12,-48 C15,-40 5,-35 0,-30 C-2,-20 -20,-5 -35,25 C-25,10 -15,-10 -5,-25 Z" fill="#00897B"/>
+    <path d="M5,-42 C15,-45 25,-40 22,-30 C15,-20 0,-15 -10,-10 C5,-18 10,-28 5,-42 Z" fill="#D32F2F"/>
+  </g>
+</svg>

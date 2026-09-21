@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="600" height="400">
+  <rect width="600" height="400" fill="#FFFFFF"/>
+  <rect x="300" y="0" width="300" height="200" fill="#DA121A"/>
+  <rect x="0" y="200" width="300" height="200" fill="#072357"/>
+  <!-- Blue Star in top-left (center 150, 100) -->
+  <polygon points="150,55 162,91 200,91 169,113 181,148 150,126 119,148 131,113 100,91 138,91" fill="#072357"/>
+  <!-- Red Star in bottom-right (center 450, 300) -->
+  <polygon points="450,255 462,291 500,291 469,313 481,348 450,326 419,348 431,313 400,291 438,291" fill="#DA121A"/>
+</svg>
