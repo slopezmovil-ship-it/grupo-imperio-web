@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://grupoimperioca.com/sitemap.xml
+Sitemap: https://grupo-imperio-web.vercel.app/sitemap.xml
