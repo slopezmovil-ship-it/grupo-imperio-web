@@ -930,7 +930,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .spotlight-content {
-  padding: 3rem;
+  padding: 1.75rem 1.25rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1950,3 +1950,166 @@ h1, h2, h3, h4, h5, h6 {
 .delay-2 { transition-delay: 0.2s; }
 .delay-3 { transition-delay: 0.3s; }
 .delay-4 { transition-delay: 0.4s; }
+
+/* ==========================================================================
+   Comprehensive Mobile Viewport Hardening (Phones <= 640px)
+   ========================================================================== */
+@media (max-width: 640px) {
+  /* Prevent horizontal scroll leakage globally */
+  html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  /* Optimize container gutters for small screens */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Section vertical padding */
+  .services-section,
+  .fleet-section,
+  .diff-section,
+  .partners-section,
+  .contact-section {
+    padding: 3.5rem 0;
+  }
+
+  /* Headings size scaling */
+  .section-title {
+    font-size: 1.65rem;
+  }
+
+  .section-desc {
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Spotlight Card (Descarga de Barcos) */
+  .spotlight-card {
+    border-radius: var(--radius-lg);
+  }
+
+  .spotlight-content {
+    padding: 1.75rem 1rem;
+  }
+
+  .spotlight-title {
+    font-size: 1.45rem;
+    line-height: 1.25;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .spotlight-desc {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .spotlight-hubs {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    width: 100%;
+  }
+
+  .spotlight-hub-box {
+    padding: 1rem;
+  }
+
+  /* Services Grid */
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .service-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  /* Fleet Display Card */
+  .fleet-display-card {
+    padding: 1.5rem 1.15rem;
+    gap: 1.5rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .fleet-specs-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .fleet-tabs {
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .fleet-tab-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  /* Differentiators Grid */
+  .diff-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .diff-card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  /* Hubs & Directory */
+  .hubs-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .hub-card {
+    padding: 1.5rem 1.15rem;
+  }
+
+  /* Regional Map wrapper */
+  .regional-map-wrapper {
+    padding: 1.25rem 0.85rem;
+    border-radius: var(--radius-lg);
+    margin-bottom: 2rem;
+  }
+
+  .regional-map-container {
+    padding: 0.5rem;
+  }
+
+  /* Requirements box */
+  .requirements-box {
+    padding: 1.5rem 1.15rem;
+  }
+
+  .req-list-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  /* Contact Form */
+  .contact-form-card {
+    padding: 1.5rem 1.15rem;
+  }
+
+  /* Floating WhatsApp button on small devices */
+  .floating-whatsapp {
+    bottom: 1.25rem;
+    right: 1.25rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .floating-whatsapp span {
+    font-size: 0.8125rem;
+  }
+}
+
